@@ -1,20 +1,42 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
+import React, {ChangeEvent, Dispatch, KeyboardEvent, useEffect, useState} from 'react'
 import Greeting from './Greeting'
 import { UserType } from './HW3'
 
 type GreetingContainerPropsType = {
-    users: any // need to fix any
-    addUserCallback: any // need to fix any
+    users: UserType[]
+    addUserCallback: (name: string) => void
 }
 
-export const pureAddUser = (name: any, setError: any, setName: any, addUserCallback: any) => {
+export const pureAddUser = (
+    name: string,
+    setError: Dispatch<React.SetStateAction<string | null>>,
+    setName: Dispatch<React.SetStateAction<string>>,
+    addUserCallback: (name: string) => void,
+) => {
+    if (!name) {
+        setError('empty name');
+    } else {
+        addUserCallback(name);
+        setName('');
+    }
+
     // если имя пустое - показать ошибку, иначе - добавить юзера и очистить инпут
 }
 
-export const pureOnBlur = (name: any, setError: any) => { // если имя пустое - показать ошибку
+export const pureOnBlur = (name: string, setError: Dispatch<React.SetStateAction<string | null>>) => {
+    if (!name) {
+        setError('name is empty')
+    } else {
+        setError('')
+    }
+    // если имя пустое - показать ошибку
 }
 
-export const pureOnEnter = (e: any, addUser: any) => { // если нажата кнопка Enter - добавить
+export const pureOnEnter = (e: KeyboardEvent<HTMLInputElement>, addUser: () => void) => {
+    if (e.key === 'Enter') {
+        addUser();
+    }
+    // если нажата кнопка Enter - добавить
 }
 
 // более простой и понятный для новичков
@@ -26,28 +48,35 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
     addUserCallback,
 }) => {
     // деструктуризация пропсов
-    const [name, setName] = useState<any>('') // need to fix any
-    const [error, setError] = useState<any>('') // need to fix any
+    const [name, setName] = useState<string>('')
+    const [error, setError] = useState<string | null>('')
 
-    const setNameCallback = (e: any) => { // need to fix any
-        setName('some name') // need to fix
+    useEffect(() => {
+        setTotalUsers(totalUsers + 1);
+        setLastUserName(name);
+    }, [name]
+)
 
-        error && setError('')
+    const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
+        e.currentTarget.value ? setName(e.currentTarget.value) : (error && setError('empty name'));
+        console.log(name)
+
     }
     const addUser = () => {
-        pureAddUser(name, setError, setName, addUserCallback)
+        pureAddUser(name, setError, setName, addUserCallback);
+
     }
 
     const onBlur = () => {
         pureOnBlur(name, setError)
     }
 
-    const onEnter = (e: any) => {
+    const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
         pureOnEnter(e, addUser)
     }
 
-    const totalUsers = 0 // need to fix
-    const lastUserName = 'some name' // need to fix
+    const [totalUsers, setTotalUsers] = useState<number>(0);
+    const [lastUserName, setLastUserName] = useState<string>('some name');
 
     return (
         <Greeting
