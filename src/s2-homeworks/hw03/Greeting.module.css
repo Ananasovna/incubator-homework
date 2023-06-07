@@ -11,9 +11,11 @@
 }
 
 .input:focus {
+
 }
 
-.errorInput {
+.errorInput  {
+    border: 2px solid red;
 }
 
 .button {

@@ -1,6 +1,6 @@
-import React, {ChangeEvent, Dispatch, KeyboardEvent, useEffect, useState} from 'react'
+import React, {ChangeEvent, Dispatch, KeyboardEvent, useState} from 'react'
 import Greeting from './Greeting'
-import { UserType } from './HW3'
+import {UserType} from './HW3'
 
 type GreetingContainerPropsType = {
     users: UserType[]
@@ -14,7 +14,7 @@ export const pureAddUser = (
     addUserCallback: (name: string) => void,
 ) => {
     if (!name) {
-        setError('empty name');
+        setError('Ошибка! Введите имя!');
     } else {
         addUserCallback(name);
         setName('');
@@ -25,7 +25,7 @@ export const pureAddUser = (
 
 export const pureOnBlur = (name: string, setError: Dispatch<React.SetStateAction<string | null>>) => {
     if (!name) {
-        setError('name is empty')
+        setError('Ошибка! Введите имя!')
     } else {
         setError('')
     }
@@ -51,15 +51,9 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
     const [name, setName] = useState<string>('')
     const [error, setError] = useState<string | null>('')
 
-    useEffect(() => {
-        setTotalUsers(totalUsers + 1);
-        setLastUserName(name);
-    }, [name]
-)
-
     const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        e.currentTarget.value ? setName(e.currentTarget.value) : (error && setError('empty name'));
-        console.log(name)
+        e.currentTarget.value ? setName(e.currentTarget.value) : (error && setError('Ошибка! Введите имя!'));
+        console.log(e)
 
     }
     const addUser = () => {
@@ -75,8 +69,8 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
         pureOnEnter(e, addUser)
     }
 
-    const [totalUsers, setTotalUsers] = useState<number>(0);
-    const [lastUserName, setLastUserName] = useState<string>('some name');
+    let totalUsers = users.length;
+    let lastUserName = users[users.length - 1]?.name;
 
     return (
         <Greeting
