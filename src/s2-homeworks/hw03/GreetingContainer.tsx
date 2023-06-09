@@ -9,11 +9,11 @@ type GreetingContainerPropsType = {
 
 export const pureAddUser = (
     name: string,
-    setError: Dispatch<React.SetStateAction<string | null>>,
-    setName: Dispatch<React.SetStateAction<string>>,
+    setError: (error: string | null) => void,
+    setName: (name: string) => void,
     addUserCallback: (name: string) => void,
 ) => {
-    if (!name) {
+    if (!name.trim()) {
         setError('Ошибка! Введите имя!');
     } else {
         addUserCallback(name);
@@ -24,7 +24,7 @@ export const pureAddUser = (
 }
 
 export const pureOnBlur = (name: string, setError: Dispatch<React.SetStateAction<string | null>>) => {
-    if (!name) {
+    if (!name.trim()) {
         setError('Ошибка! Введите имя!')
     } else {
         setError('')
@@ -49,13 +49,14 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
 }) => {
     // деструктуризация пропсов
     const [name, setName] = useState<string>('')
+    console.log(name)
     const [error, setError] = useState<string | null>('')
 
     const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        e.currentTarget.value ? setName(e.currentTarget.value) : (error && setError('Ошибка! Введите имя!'));
-        console.log(e)
-
+        setName(e.currentTarget.value);
+        !e.currentTarget.value ? setError('Ошибка! Введите имя!') : setError('')
     }
+
     const addUser = () => {
         pureAddUser(name, setError, setName, addUserCallback);
 
