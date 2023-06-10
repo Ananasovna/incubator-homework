@@ -26,7 +26,7 @@ const Greeting: React.FC<GreetingPropsType> = (
     } // деструктуризация пропсов
 ) => {
     // s.input:focus
-    const inputClass = error ? `${s.errorInput} ${s.input}:focus}` : `${s.input}`;
+    const inputClass = error ? `${s.input} ${s.errorInput}` : `${s.input}`;
     console.log(inputClass);
 
     return (
