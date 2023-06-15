@@ -4,11 +4,21 @@ import SuperInputText from './common/c1-SuperInputText/SuperInputText'
 import SuperCheckbox from './common/c3-SuperCheckbox/SuperCheckbox'
 import SuperButton from './common/c2-SuperButton/SuperButton'
 
+type userType = {
+    id: number,
+    name: string
+}
+
+interface assObjType {
+    [key: string]: userType;
+}
+
 const Stand = () => {
     const [stateForAllInputs, setValue] = useState<string>('')
     const [error, setError] = useState<string>('')
 
     const [stateForAllCheckboxes, setChecked] = useState<boolean>(false)
+
 
     return (
         <div id={'hw4-stand'} className={s.stand}>
