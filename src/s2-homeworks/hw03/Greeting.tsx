@@ -27,7 +27,6 @@ const Greeting: React.FC<GreetingPropsType> = (
 ) => {
     // s.input:focus
     const inputClass = error ? `${s.input} ${s.errorInput}` : `${s.input}`;
-    console.log(inputClass);
 
     return (
         <div id={'hw3-form'} className={s.greetingForm}>
