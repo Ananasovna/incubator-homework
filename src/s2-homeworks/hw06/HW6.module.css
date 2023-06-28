@@ -1,5 +1,9 @@
 .buttonsContainer {
+    width: 250px;
+    display: flex;
+    gap: 25px;
 }
 
 .editableSpanContainer {
+    padding: 32px 0 24px;
 }
