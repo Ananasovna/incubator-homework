@@ -56,6 +56,8 @@
     flex-wrap: wrap;
     font-family: Montserrat;
     line-height: 20px;
+    white-space: normal;
+    max-width: 400px;
 }
 
 .time {

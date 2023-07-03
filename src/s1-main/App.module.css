@@ -20,7 +20,7 @@
 }
 
 .hw {
-    height: 340px;
+    min-height: 340px;
     border-bottom: 1px solid #D9D9D9;
     border-top: 1px solid #D9D9D9;
     padding: 0 70px 30px 70px;
