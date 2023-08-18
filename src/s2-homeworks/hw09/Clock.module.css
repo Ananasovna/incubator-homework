@@ -5,7 +5,7 @@
     gap: 20px;
 }
 
-.buttonsContainer button {
+.buttonsContainer button:disabled {
     color: #FFF;
 }
 

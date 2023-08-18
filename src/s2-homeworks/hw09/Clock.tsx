@@ -29,8 +29,8 @@ function Clock() {
         setShow(false);
     }
 
-    const stringTime = date.toLocaleTimeString() || <br/>
-    const stringDate = date.toLocaleDateString() || <br/>
+    const stringTime = date.toLocaleTimeString('ru-RU') || <br/>
+    const stringDate = date.toLocaleDateString('ru-RU') || <br/>
 
     const stringDay = date.toLocaleString('en-US', { weekday: 'long' }) || <br/>
     const stringMonth = date.toLocaleString('en-US', { month: 'long' }) || <br/>
