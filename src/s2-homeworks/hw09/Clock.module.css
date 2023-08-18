@@ -1,7 +1,15 @@
 .buttonsContainer {
+   margin-top: 30px;
+   display: flex;
+    gap: 20px;
+}
+
+.buttonsContainer button {
+    color: #FFF;
 }
 
 .clock {
+    height: 110px;
 }
 
 .watch {
@@ -11,4 +19,5 @@
 }
 
 .more {
+
 }
