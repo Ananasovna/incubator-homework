@@ -49,17 +49,17 @@ const HW13 = () => {
                         setInfo('AxiosError')
                         break;
                     }
-                    case false: {
-                        setCode('500')
+                    case undefined: {
+                        setCode('400')
                         setText('Ты не отправил success в body вообще!')
-                        setImage(error400)
+                        setImage(error500)
                         setInfo('ошибка 400 - обычно означает что скорее всего фронт отправил что-то не то на бэк!')
                         break;
                     }
-                    case undefined: {
-                        setCode('400')
+                    case false: {
+                        setCode('500')
                         setText('эмитация ошибки на сервере')
-                        setImage(error500)
+                        setImage(error400)
                         setInfo('ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)')
                         break;
                     }
