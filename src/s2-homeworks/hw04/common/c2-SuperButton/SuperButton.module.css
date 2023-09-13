@@ -62,6 +62,6 @@
 }
 
 .button:disabled {
-    width: 132px;
+    min-width: 132px;
     background: #004D99
 }
