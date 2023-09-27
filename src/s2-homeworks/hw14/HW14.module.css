@@ -1,7 +1,15 @@
+.wrapper {
+    width: 470px;
+}
+
 .tech {
 
 }
 
 .loading {
-
+    width: 468px;
+    color: #4D4D4D;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: right;
 }
